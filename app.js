@@ -4,109 +4,132 @@ tg.expand();
 const SUPABASE_URL = 'https://cxoswjkqwuhribsgpcbq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_FJOaGKCTBOb4Oq8JGKZIeA_w1lYQ7y-';
 
+// Состояние игрока
 let player = {
     user_id: tg.initDataUnsafe.user ? tg.initDataUnsafe.user.id.toString() : "test_user",
     nickname: tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Игрок",
     gold: 0,
-    level: 1,
-    inventory: [] // На будущее для хранения вещей
+    level: 1
 };
 
-// Список возможного лута
-const lootTable = [
-    { name: "Ржавый нож", type: "weapon", power: 2, chance: 0.3 },
-    { name: "Обноски раба", type: "armor", defense: 1, chance: 0.3 },
-    { name: "Кольцо Скифа", type: "accessory", power: 5, chance: 0.05 }
-];
-
+// Список монстров
 const monsters = [
-    { name: "Чумная крыса", hp: 20, attack: 2, gold: 15 },
-    { name: "Скелет-разведчик", hp: 40, attack: 5, gold: 40 },
-    { name: "Болотный ползун", hp: 60, attack: 8, gold: 70 }
+    { name: "Чумная крыса", gold: 15, chance: 0.8 },
+    { name: "Скелет-разведчик", gold: 40, chance: 0.6 },
+    { name: "Болотный ползун", gold: 70, chance: 0.4 }
 ];
 
+// 1. Загрузка данных
 async function loadPlayerData() {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/players?user_id=eq.${player.user_id}`, {
-        headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
-    });
-    const data = await response.json();
-    if (data.length > 0) { player = data[0]; } 
-    else { await createNewPlayer(); }
-    updateUI();
+    try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/players?user_id=eq.${player.user_id}`, {
+            headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+        });
+        const data = await response.json();
+
+        if (data.length > 0) {
+            player = data[0];
+        } else {
+            await createNewPlayer();
+        }
+        updateUI();
+    } catch (e) {
+        console.error("Ошибка загрузки:", e);
+    }
 }
 
+// 2. Создание игрока
 async function createNewPlayer() {
     await fetch(`${SUPABASE_URL}/rest/v1/players`, {
         method: 'POST',
-        headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ user_id: player.user_id, nickname: player.nickname, gold: 100, level: 1 })
+        headers: { 
+            "apikey": SUPABASE_KEY, 
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: player.user_id,
+            nickname: player.nickname,
+            gold: 100,
+            level: 1
+        })
     });
 }
 
+// 3. Сохранение данных
 async function savePlayerData() {
     await fetch(`${SUPABASE_URL}/rest/v1/players?user_id=eq.${player.user_id}`, {
         method: 'PATCH',
-        headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ gold: player.gold, level: player.level })
+        headers: { 
+            "apikey": SUPABASE_KEY, 
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            gold: player.gold,
+            level: player.level
+        })
     });
     updateUI();
 }
 
+// 4. Обновление интерфейса
 function updateUI() {
     document.getElementById('nickname').innerText = player.nickname;
     document.getElementById('gold').innerText = player.gold;
     document.getElementById('level-badge').innerText = "LVL " + player.level;
 }
 
+// 5. ЛОГИКА БОЯ (Главное!)
 function startBattle() {
     const log = document.getElementById('log');
     const monster = monsters[Math.floor(Math.random() * monsters.length)];
-    log.innerHTML = `⚔️ Бой с <b>${monster.name}</b>...`;
+    
+    log.innerHTML = `🔎 Ищем врага в зарослях...`;
 
+    // Через 1 секунду находим врага
     setTimeout(() => {
-        if (Math.random() > 0.2) {
-            player.gold += monster.gold;
-            let lootMsg = "";
-            
-            // Шанс на выпадение вещи
-            const drop = lootTable.find(item => Math.random() < item.chance);
-            if (drop) {
-                lootMsg = `<br>🎁 Выбили: <b>${drop.name}</b>!`;
-                // Тут будет логика сохранения в инвентарь
-            }
+        log.innerHTML = `⚔️ Вы встретили: <b>${monster.name}</b>! Бой начался...`;
+        
+        // Через 2 секунды результат боя
+        setTimeout(() => {
+            const isWin = Math.random() < monster.chance;
 
-            log.innerHTML = `✅ Убит <b>${monster.name}</b>!<br>Золото: +${monster.gold}${lootMsg}`;
-            savePlayerData();
-        } else {
-            log.innerHTML = `❌ Вы проиграли бой...`;
-        }
+            if (isWin) {
+                player.gold += monster.gold;
+                log.innerHTML = `✅ Победа! Вы одолели <b>${monster.name}</b>.<br>Добыча: 💰 ${monster.gold} золота.`;
+                savePlayerData();
+            } else {
+                log.innerHTML = `❌ <b>${monster.name}</b> оказался слишком силен. Вы сбежали!`;
+            }
+        }, 2000);
     }, 1000);
 }
 
+// 6. Переключение вкладок
 function changeTab(tabName) {
     const log = document.getElementById('log');
+    
     if (tabName === 'battle') {
         startBattle();
     } else if (tabName === 'inv') {
-        log.innerText = "В сумке пусто (система инвентаря в разработке)";
+        log.innerText = "Рюкзак пуст. Найдите снаряжение в бою.";
     } else if (tabName === 'stats') {
-        log.innerText = `Игрок: ${player.nickname} | Золото: ${player.gold}`;
-    }
-} // <--- ВОТ ЭТА СКОБКА БЫЛА ПОТЕРЯНА
-
-function usePromo() {
-    const code = prompt("Введите промокод:");
-    if (code === "DIS_SCYTH") {
-        player.gold += 1000;
-        alert("Превентив одобряет! +1000 золота.");
-        savePlayerData();
-    } else if (code === "ADMIN_LVL") {
-        player.level += 1;
-        alert("Уровень повышен!");
-        savePlayerData();
-    } else {
-        alert("Код не найден.");
+        log.innerHTML = `👤 <b>${player.nickname}</b><br>Уровень: ${player.level}<br>Золото: ${player.gold}`;
+    } else if (tabName === 'shop') {
+        log.innerText = "Магазин закрыт на переучет.";
     }
 }
 
+// Промокоды
+function usePromo() {
+    const code = prompt("Введите код:");
+    if (code === "DIS_SCYTH") {
+        player.gold += 1000;
+        alert("Бонус активирован!");
+        savePlayerData();
+    }
+}
+
+// Запуск игры
 loadPlayerData();
