@@ -11,33 +11,34 @@
     <div id="game-container">
         <header class="status-bar">
             <div class="user-info">
-                <span id="nickname">Scyth</span>
-                <span id="level-badge">LVL 1</span>
+                <span id="nickname">Загрузка...</span>
+                <span id="level-badge" class="badge">LVL 1</span>
             </div>
             <div class="bars">
                 <div class="bar-container hp"><div id="hp-fill" style="width: 100%;"></div><span>HP</span></div>
-                <div class="bar-container exp"><div id="exp-fill" style="width: 20%;"></div><span>EXP</span></div>
+                <div class="bar-container exp"><div id="exp-fill" style="width: 0%;"></div><span>EXP</span></div>
             </div>
         </header>
 
         <main id="game-screen">
             <div class="location-title">Чумные земли: Лагерь</div>
             <div class="sprite-container">
-                <img src="https://via.placeholder.com/200x250/1a1a1a/00ffcc?text=CHARACTER" alt="Hero">
+                <img src="https://via.placeholder.com/200x250/1a1a1a/00ffcc?text=HERO" alt="Hero">
             </div>
-            <div id="log">Добро пожаловать в Дисгардиум...</div>
+            <div id="log">Система инициализирована...</div>
         </main>
 
         <footer>
             <div class="currency-row">
-                <span>💰 <span id="gold">100</span></span>
+                <span>💰 <span id="gold">0</span></span>
                 <span>💎 <span id="premium">0</span></span>
             </div>
             <nav class="menu-buttons">
-                <button onclick="changeTab('battle')">Меч</button>
-                <button onclick="changeTab('inv')">Рюкзак</button>
-                <button onclick="changeTab('stats')">Герой</button>
-                <button onclick="changeTab('shop')">Рынок</button>
+                <button onclick="changeTab('battle')">⚔️ Бой</button>
+                <button onclick="changeTab('inv')">🎒 Сумка</button>
+                <button onclick="changeTab('stats')">👤 Герой</button>
+                <button onclick="changeTab('shop')">🛒 Рынок</button>
+                <button onclick="usePromo()">🎁 Код</button>
             </nav>
         </footer>
     </div>
@@ -45,4 +46,3 @@
     <script src="app.js"></script>
 </body>
 </html>
-<button onclick="usePromo()">Код</button>
