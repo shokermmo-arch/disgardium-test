@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Disgardium Mobile</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div id="game-container">
+        <header class="status-bar">
+            <div class="user-info">
+                <span id="nickname">Scyth</span>
+                <span id="level-badge">LVL 1</span>
+            </div>
+            <div class="bars">
+                <div class="bar-container hp"><div id="hp-fill" style="width: 100%;"></div><span>HP</span></div>
+                <div class="bar-container exp"><div id="exp-fill" style="width: 20%;"></div><span>EXP</span></div>
+            </div>
+        </header>
+
+        <main id="game-screen">
+            <div class="location-title">Чумные земли: Лагерь</div>
+            <div class="sprite-container">
+                <img src="https://via.placeholder.com/200x250/1a1a1a/00ffcc?text=CHARACTER" alt="Hero">
+            </div>
+            <div id="log">Добро пожаловать в Дисгардиум...</div>
+        </main>
+
+        <footer>
+            <div class="currency-row">
+                <span>💰 <span id="gold">100</span></span>
+                <span>💎 <span id="premium">0</span></span>
+            </div>
+            <nav class="menu-buttons">
+                <button onclick="changeTab('battle')">Меч</button>
+                <button onclick="changeTab('inv')">Рюкзак</button>
+                <button onclick="changeTab('stats')">Герой</button>
+                <button onclick="changeTab('shop')">Рынок</button>
+            </nav>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

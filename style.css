@@ -1,0 +1,86 @@
+/* Базовые настройки для Telegram */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden; /* Чтобы не было прокрутки страницы */
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+/* Статус-бар */
+.status-bar {
+    background: #1a1a1a;
+    padding: 10px;
+    border-bottom: 2px solid #333;
+}
+
+.bar-container {
+    background: #333;
+    height: 12px;
+    margin: 5px 0;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.hp div { background: #ff4d4d; height: 100%; transition: 0.3s; }
+.exp div { background: #4dff88; height: 100%; transition: 0.3s; }
+.bar-container span {
+    position: absolute; width: 100%; text-align: center;
+    font-size: 10px; top: 0; font-weight: bold; color: white;
+}
+
+/* Игровое поле */
+#game-screen {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 100%);
+}
+
+.sprite-container img {
+    border: 3px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+    border-radius: 10px;
+}
+
+#log {
+    margin-top: 15px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    width: 90%;
+    height: 60px;
+    font-size: 14px;
+    border-radius: 5px;
+    border-left: 3px solid #00ffcc;
+}
+
+/* Навигация */
+.menu-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding: 10px;
+    background: #1a1a1a;
+}
+
+button {
+    background: #333;
+    border: 1px solid #444;
+    color: white;
+    padding: 12px 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:active { background: #00ffcc; color: black; }
