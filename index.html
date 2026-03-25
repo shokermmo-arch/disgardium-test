@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Asteria Clone</title>
+    <title>Векрон — Легендарная RPG</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
@@ -12,54 +12,56 @@
         <header class="main-header">
             <div class="user-profile">
                 <div class="avatar-box">
-                    <img src="https://via.placeholder.com/60" id="avatar">
+                    <img src="https://asteriagame.com/img/avatar_m.png" id="avatar">
                     <div id="level-orb">1</div>
                 </div>
                 <div class="bars-container">
                     <div class="stat-line"><div class="fill hp" id="hp-bar"></div><span id="hp-text">663/663</span></div>
                     <div class="stat-line"><div class="fill mp" id="mp-bar"></div><span id="mp-text">327/327</span></div>
                     <div class="stat-line"><div class="fill en" id="en-bar"></div><span id="en-text">100/100</span></div>
+                    <div class="stat-line"><div class="fill val" id="val-bar"></div><span id="val-text">Доблесть: 0</span></div>
                 </div>
             </div>
             <nav class="top-nav">
                 <button onclick="changeTab('inv')">Рюкзак</button>
                 <button onclick="changeTab('loc')">Локация</button>
                 <button onclick="changeTab('hunt')">Охота</button>
+                <button onclick="changeTab('map')">Карта</button>
                 <button onclick="changeTab('bank')">Банк</button>
             </nav>
         </header>
 
         <div class="middle-section">
             <aside class="character-slots">
-                <div class="slot" id="slot-head" data-type="head"></div>
-                <div class="slot" id="slot-weapon" data-type="weapon"></div>
-                <div class="slot" id="slot-chest" data-type="chest"></div>
-                <div class="slot" id="slot-legs" data-type="legs"></div>
-                <div class="slot" id="slot-boots" data-type="boots"></div>
+                <div class="slot" title="Шлем" id="slot-head"></div>
+                <div class="slot" title="Оружие" id="slot-weapon"></div>
+                <div class="slot" title="Доспех" id="slot-chest"></div>
+                <div class="slot" title="Поножи" id="slot-legs"></div>
+                <div class="slot" title="Сапоги" id="slot-boots"></div>
                 <div class="hero-render">
-                    <img src="https://via.placeholder.com/120x200" id="hero-img">
+                    <img src="https://asteriagame.com/img/pers/human_m.png" id="hero-img">
                 </div>
                 <div class="belt-container">
-                    <div class="belt-slot" id="belt-1"></div>
-                    <div class="belt-slot" id="belt-2"></div>
-                    <div class="belt-slot" id="belt-3"></div>
+                    <div class="belt-slot" title="Эликсир Гиганта"></div>
+                    <div class="belt-slot" title="Эликсир Жизни"></div>
+                    <div class="belt-slot" title="Эликсир Мощи"></div>
                 </div>
             </aside>
 
-            <main id="game-screen">
-                <div id="log-window">Добро пожаловать в мир Астерии!</div>
+            <main id="game-screen" class="location-view">
+                <div id="location-name">Центральная Площадь Векрона</div>
+                <div id="log-window">Добро пожаловать в мир Векрон!</div>
             </main>
         </div>
 
         <footer class="footer-controls">
             <div class="sub-menu">
                 <button onclick="changeTab('stats')">Персонаж</button>
-                <button onclick="changeTab('skills')">Умения</button>
-                <button onclick="changeTab('quests')">Квесты</button>
+                <button onclick="changeTab('skills')">Магия</button>
+                <button onclick="changeTab('quests')">Задания</button>
             </div>
             <div id="chat-area">
-                <div class="chat-tabs"><span>Общий</span><span>Клан</span></div>
-                <div id="chat-content">Система: Мир загружен.</div>
+                <div id="chat-content">Система: Мир Векрон загружается...</div>
             </div>
         </footer>
     </div>
