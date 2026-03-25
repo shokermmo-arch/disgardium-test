@@ -1,55 +1,56 @@
-/* style.css */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body, html { height: 100%; background: #000; overflow: hidden; font-family: sans-serif; }
+body, html { height: 100%; background: #000; color: #fff; font-family: Arial, sans-serif; }
 
 #game-container {
     width: 100%; max-width: 480px; height: 100vh;
     margin: 0 auto; display: flex; flex-direction: column;
 }
 
-/* Верхняя панель (HUD) */
+/* Верхняя панель */
 .player-hud {
     width: 100%; height: 110px;
-    background: url('img/gui/player_hud.png') no-repeat center;
+    background: url('./img/gui/player_hud.png') no-repeat center;
     background-size: 100% 100%;
     position: relative;
+    border: 1px solid gold; /* Чтобы видеть границы, если картинка пропадет */
 }
 
 .hud-stats-container { position: absolute; left: 92px; top: 12px; width: 240px; }
-.bar-line { height: 10px; margin-bottom: 4px; border-radius: 2px; }
-.exp { background: #4caf50; width: 40%; height: 6px; }
-.valour { background: #ff9800; width: 95%; height: 6px; }
-.hp { background: #e74c3c; width: 51%; margin-top: 5px; }
+.bar-line { height: 8px; margin-bottom: 4px; border-radius: 2px; }
+.exp { background: #4caf50; width: 40%; }
+.valour { background: #ff9800; width: 95%; }
+.hp { background: #e74c3c; width: 51%; margin-top: 6px; }
 .mp { background: #3498db; width: 100%; }
 
 .currency-display {
     position: absolute; left: 100px; bottom: 10px;
-    font-size: 11px; display: flex; gap: 12px; color: #fff; font-weight: bold;
+    font-size: 11px; display: flex; gap: 12px; font-weight: bold;
 }
 
-/* Игровой мир и персонаж */
+/* Центр (Мир) */
 .game-viewport {
     flex: 1; position: relative;
-    background: url('img/gui/city_bg.png') no-repeat center;
+    background: url('./img/gui/city_bg.png') no-repeat center;
     background-size: cover;
+    background-color: #1a1a1a; /* Цвет, если картинка не найдется */
 }
 
 .location-label {
     width: 100%; text-align: center; padding: 10px;
-    background: rgba(0,0,0,0.4); color: #ffd700; font-weight: bold;
+    background: rgba(0,0,0,0.6); color: #ffd700; font-weight: bold;
 }
 
 .hero-character {
     position: absolute; bottom: 5%; left: 50%;
     transform: translateX(-50%);
-    width: 280px; height: 420px;
-    background: url('img/pers/hero_m.png') no-repeat center bottom;
+    width: 280px; height: 400px;
+    background: url('./img/pers/hero_m.png') no-repeat center bottom;
     background-size: contain;
 }
 
 /* Нижнее меню */
 .bottom-nav {
     width: 100%; height: 75px;
-    background: url('img/gui/main_nav.png') no-repeat center;
+    background: url('./img/gui/main_nav.png') no-repeat center;
     background-size: contain;
 }
