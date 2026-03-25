@@ -1,86 +1,36 @@
-/* Базовые настройки для Telegram */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #0d0d0d;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden; /* Чтобы не было прокрутки страницы */
-}
+body { margin: 0; background: #1a0f00; color: #e2d1a6; font-family: 'Segoe UI', serif; overflow: hidden; }
+#game-container { display: flex; flex-direction: column; height: 100vh; }
 
-#game-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-}
+/* HUD */
+.main-header { background: url('https://www.transparenttextures.com/patterns/dark-leather.png'), #3d2b1f; padding: 5px; border-bottom: 2px solid #7d6348; }
+.user-profile { display: flex; align-items: center; gap: 10px; }
+.avatar-box { position: relative; border: 2px solid #d4af37; border-radius: 50%; width: 60px; height: 60px; }
+#level-orb { position: absolute; bottom: -5px; right: -5px; background: #d4af37; color: #000; border-radius: 50%; width: 22px; text-align: center; font-weight: bold; }
 
-/* Статус-бар */
-.status-bar {
-    background: #1a1a1a;
-    padding: 10px;
-    border-bottom: 2px solid #333;
-}
+.bars-container { flex-grow: 1; }
+.stat-line { background: #000; height: 12px; margin: 3px 0; border: 1px solid #555; position: relative; border-radius: 6px; overflow: hidden; }
+.fill { height: 100%; width: 100%; transition: 0.3s; }
+.hp { background: linear-gradient(to right, #8b0000, #ff4500); }
+.mp { background: linear-gradient(to right, #00008b, #1e90ff); }
+.en { background: linear-gradient(to right, #006400, #32cd32); }
+.stat-line span { position: absolute; width: 100%; text-align: center; font-size: 9px; top: -1px; color: white; text-shadow: 1px 1px 1px black; }
 
-.bar-container {
-    background: #333;
-    height: 12px;
-    margin: 5px 0;
-    position: relative;
-    border-radius: 6px;
-    overflow: hidden;
-}
+.top-nav { display: flex; justify-content: space-around; padding-top: 5px; }
+.top-nav button { background: #5a3e2b; color: #f2e1c1; border: 1px solid #8d6e53; padding: 4px 10px; font-size: 12px; border-radius: 3px; }
 
-.hp div { background: #ff4d4d; height: 100%; transition: 0.3s; }
-.exp div { background: #4dff88; height: 100%; transition: 0.3s; }
-.bar-container span {
-    position: absolute; width: 100%; text-align: center;
-    font-size: 10px; top: 0; font-weight: bold; color: white;
-}
+/* Middle */
+.middle-section { display: flex; flex-grow: 1; overflow: hidden; }
+.character-slots { width: 80px; background: rgba(0,0,0,0.5); display: flex; flex-direction: column; align-items: center; padding: 5px; gap: 5px; border-right: 1px solid #444; }
+.slot { width: 40px; height: 40px; background: rgba(255,255,255,0.05); border: 1px solid #7d6348; }
+.hero-render { margin: 10px 0; }
+.belt-container { display: flex; gap: 3px; }
+.belt-slot { width: 22px; height: 22px; border: 1px solid #d4af37; background: #222; }
 
-/* Игровое поле */
-#game-screen {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 100%);
-}
+#game-screen { flex-grow: 1; padding: 10px; background: url('https://www.transparenttextures.com/patterns/paper.png'), #c4a484; color: #2c1a0a; overflow-y: auto; }
+#log-window { font-size: 14px; line-height: 1.4; }
 
-.sprite-container img {
-    border: 3px solid #00ffcc;
-    box-shadow: 0 0 15px #00ffcc;
-    border-radius: 10px;
-}
-
-#log {
-    margin-top: 15px;
-    background: rgba(0,0,0,0.7);
-    padding: 10px;
-    width: 90%;
-    height: 60px;
-    font-size: 14px;
-    border-radius: 5px;
-    border-left: 3px solid #00ffcc;
-}
-
-/* Навигация */
-.menu-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-    padding: 10px;
-    background: #1a1a1a;
-}
-
-button {
-    background: #333;
-    border: 1px solid #444;
-    color: white;
-    padding: 12px 5px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-button:active { background: #00ffcc; color: black; }
+/* Footer */
+.footer-controls { background: #2c1a0a; border-top: 2px solid #7d6348; padding: 5px; }
+.sub-menu { display: flex; gap: 5px; margin-bottom: 5px; }
+.sub-menu button { flex: 1; background: #4a3528; border: 1px solid #634a3a; color: #d4af37; padding: 5px; font-size: 11px; }
+#chat-area { height: 80px; background: rgba(0,0,0,0.3); font-size: 12px; padding: 5px; overflow-y: scroll; border: 1px solid #444; }

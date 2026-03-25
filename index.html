@@ -3,46 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Disgardium Mobile</title>
+    <title>Asteria Clone</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <div id="game-container">
-        <header class="status-bar">
-            <div class="user-info">
-                <span id="nickname">Загрузка...</span>
-                <span id="level-badge" class="badge">LVL 1</span>
+        <header class="main-header">
+            <div class="user-profile">
+                <div class="avatar-box">
+                    <img src="https://via.placeholder.com/60" id="avatar">
+                    <div id="level-orb">1</div>
+                </div>
+                <div class="bars-container">
+                    <div class="stat-line"><div class="fill hp" id="hp-bar"></div><span id="hp-text">663/663</span></div>
+                    <div class="stat-line"><div class="fill mp" id="mp-bar"></div><span id="mp-text">327/327</span></div>
+                    <div class="stat-line"><div class="fill en" id="en-bar"></div><span id="en-text">100/100</span></div>
+                </div>
             </div>
-            <div class="bars">
-                <div class="bar-container hp"><div id="hp-fill" style="width: 100%;"></div><span>HP</span></div>
-                <div class="bar-container exp"><div id="exp-fill" style="width: 0%;"></div><span>EXP</span></div>
-            </div>
+            <nav class="top-nav">
+                <button onclick="changeTab('inv')">Рюкзак</button>
+                <button onclick="changeTab('loc')">Локация</button>
+                <button onclick="changeTab('hunt')">Охота</button>
+                <button onclick="changeTab('bank')">Банк</button>
+            </nav>
         </header>
 
-        <main id="game-screen">
-            <div class="location-title">Чумные земли: Лагерь</div>
-            <div class="sprite-container">
-                <img src="https://via.placeholder.com/200x250/1a1a1a/00ffcc?text=HERO" alt="Hero">
-            </div>
-            <div id="log">Система инициализирована...</div>
-        </main>
+        <div class="middle-section">
+            <aside class="character-slots">
+                <div class="slot" id="slot-head" data-type="head"></div>
+                <div class="slot" id="slot-weapon" data-type="weapon"></div>
+                <div class="slot" id="slot-chest" data-type="chest"></div>
+                <div class="slot" id="slot-legs" data-type="legs"></div>
+                <div class="slot" id="slot-boots" data-type="boots"></div>
+                <div class="hero-render">
+                    <img src="https://via.placeholder.com/120x200" id="hero-img">
+                </div>
+                <div class="belt-container">
+                    <div class="belt-slot" id="belt-1"></div>
+                    <div class="belt-slot" id="belt-2"></div>
+                    <div class="belt-slot" id="belt-3"></div>
+                </div>
+            </aside>
 
-        <footer>
-            <div class="currency-row">
-                <span>💰 <span id="gold">0</span></span>
-                <span>💎 <span id="premium">0</span></span>
+            <main id="game-screen">
+                <div id="log-window">Добро пожаловать в мир Астерии!</div>
+            </main>
+        </div>
+
+        <footer class="footer-controls">
+            <div class="sub-menu">
+                <button onclick="changeTab('stats')">Персонаж</button>
+                <button onclick="changeTab('skills')">Умения</button>
+                <button onclick="changeTab('quests')">Квесты</button>
             </div>
-            <nav class="menu-buttons">
-                <button onclick="changeTab('battle')">⚔️ Бой</button>
-                <button onclick="changeTab('inv')">🎒 Сумка</button>
-                <button onclick="changeTab('stats')">👤 Герой</button>
-                <button onclick="changeTab('shop')">🛒 Рынок</button>
-                <button onclick="usePromo()">🎁 Код</button>
-            </nav>
+            <div id="chat-area">
+                <div class="chat-tabs"><span>Общий</span><span>Клан</span></div>
+                <div id="chat-content">Система: Мир загружен.</div>
+            </div>
         </footer>
     </div>
-
     <script src="app.js"></script>
 </body>
 </html>
