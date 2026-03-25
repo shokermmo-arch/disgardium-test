@@ -1,56 +1,57 @@
+/* style.css */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body, html { height: 100%; background: #000; color: #fff; font-family: Arial, sans-serif; }
+body, html { height: 100%; background: #000; overflow: hidden; }
 
 #game-container {
-    width: 100%; max-width: 480px; height: 100vh;
-    margin: 0 auto; display: flex; flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* Если картинки нет, этот цвет покажет, что блок существует */
+    background-color: #1a1510; 
 }
 
-/* Верхняя панель */
+/* ВЕРХНЯЯ ПАНЕЛЬ */
 .player-hud {
-    width: 100%; height: 110px;
-    background: url('./img/gui/player_hud.png') no-repeat center;
+    width: 100%;
+    height: 110px;
+    background-color: #00008B; /* ТЕМНО-СИНИЙ (Для теста) */
+    background-image: url('img/gui/player_hud.png');
     background-size: 100% 100%;
+    border-bottom: 2px solid #ffd700;
     position: relative;
-    border: 1px solid gold; /* Чтобы видеть границы, если картинка пропадет */
 }
 
-.hud-stats-container { position: absolute; left: 92px; top: 12px; width: 240px; }
-.bar-line { height: 8px; margin-bottom: 4px; border-radius: 2px; }
-.exp { background: #4caf50; width: 40%; }
-.valour { background: #ff9800; width: 95%; }
-.hp { background: #e74c3c; width: 51%; margin-top: 6px; }
-.mp { background: #3498db; width: 100%; }
-
-.currency-display {
-    position: absolute; left: 100px; bottom: 10px;
-    font-size: 11px; display: flex; gap: 12px; font-weight: bold;
-}
-
-/* Центр (Мир) */
+/* ЦЕНТРАЛЬНАЯ ЧАСТЬ */
 .game-viewport {
-    flex: 1; position: relative;
-    background: url('./img/gui/city_bg.png') no-repeat center;
+    flex: 1;
+    background-color: #222; /* ТЕМНО-СЕРЫЙ (Для теста) */
+    background-image: url('img/gui/city_bg.png');
     background-size: cover;
-    background-color: #1a1a1a; /* Цвет, если картинка не найдется */
-}
-
-.location-label {
-    width: 100%; text-align: center; padding: 10px;
-    background: rgba(0,0,0,0.6); color: #ffd700; font-weight: bold;
+    border: 3px solid red; /* КРАСНАЯ РАМКА - если её видишь, CSS работает! */
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
 .hero-character {
-    position: absolute; bottom: 5%; left: 50%;
-    transform: translateX(-50%);
-    width: 280px; height: 400px;
-    background: url('./img/pers/hero_m.png') no-repeat center bottom;
+    position: absolute;
+    bottom: 5%;
+    width: 200px;
+    height: 300px;
+    background-image: url('img/pers/hero_m.png');
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-/* Нижнее меню */
+/* НИЖНЯЯ ПАНЕЛЬ */
 .bottom-nav {
-    width: 100%; height: 75px;
-    background: url('./img/gui/main_nav.png') no-repeat center;
+    width: 100%;
+    height: 75px;
+    background-color: #333;
+    background-image: url('img/gui/main_nav.png');
     background-size: contain;
 }
