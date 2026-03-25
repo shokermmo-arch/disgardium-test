@@ -1,51 +1,73 @@
-/* Общий контейнер */
-#game-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #1a1a1a; /* Темный фон, если текстура кожи не загрузится */
-    background-image: url('img/gui/leather.png');
+/* Базовые настройки для всего экрана */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
-/* Верхняя панель */
+#game-container {
+    width: 100%;
+    max-width: 480px; /* Размер как у мобильного приложения */
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid #444;
+}
+
+/* ВЕРХНЯЯ ПАНЕЛЬ (HUD) */
 .player-hud {
     width: 100%;
-    min-height: 100px; /* Фиксируем высоту */
+    height: 100px;
     background: url('img/gui/player_hud.png') no-repeat center;
     background-size: 100% 100%;
     position: relative;
-    border-bottom: 2px solid #333;
+    z-index: 10;
 }
 
-/* Игровое поле */
+/* ИГРОВОЙ МИР (Центр) */
 .game-viewport {
-    flex: 1; /* Растягиваем на всё свободное место */
-    display: flex;
-    position: relative;
+    flex: 1;
     background: url('img/gui/city_bg.png') no-repeat center;
     background-size: cover;
-}
-
-/* Кукла персонажа (центровка) */
-.hero-placeholder {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 300px;
-    background: url('img/pers/hero_m.png') no-repeat center;
-    background-size: contain;
-}
-
-/* Нижняя панель */
-.bottom-nav {
-    width: 100%;
-    height: 60px;
-    background: #000;
+    position: relative;
     display: flex;
     justify-content: center;
-    background-image: url('img/gui/main_nav.png');
+    align-items: flex-end; /* Чтобы персонаж стоял на земле */
+}
+
+/* ПЕРСОНАЖ (Кукла) */
+.hero-placeholder {
+    width: 280px; /* Подбираем под размер твоей картинки hero_m.png */
+    height: 90%;
+    background: url('img/pers/hero_m.png') no-repeat center bottom;
     background-size: contain;
+    margin-bottom: 20px;
+}
+
+/* НИЖНЯЯ НАВИГАЦИЯ */
+.bottom-nav {
+    width: 100%;
+    height: 70px;
+    background: url('img/gui/main_nav.png') no-repeat center;
+    background-size: contain;
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Заголовок локации сверху */
+.location-name {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    color: #ffd700;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000;
+    z-index: 5;
 }

@@ -3,53 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Векрон</title>
+    <title>Векрон - Мир Теней</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
         <div class="player-hud">
-            <div class="hud-avatar">
-                <img src="img/pers/hero_m.png" id="avatar-img">
-                <div class="hud-level">6</div>
-            </div>
-            <div class="hud-stats">
-                <div class="hud-line exp"><span>Опыт: 81299/202500</span></div>
-                <div class="hud-line valour"><span>Доблесть: 99.51%</span></div>
-                <div class="hud-line hp"><span>338/663</span></div>
-                <div class="hud-line mp"><span>327/327</span></div>
-            </div>
-            <div class="hud-currencies">
-                <span id="gold">0</span> <span id="silver">0</span> <span id="copper">0</span>
-                <span id="diamonds">458.25</span>
+            <div class="hud-avatar-click" onclick="showTab('character')"></div>
+            <div id="hp-bar" class="stat-bar hp"></div>
+            <div id="mp-bar" class="stat-bar mp"></div>
+            <div id="exp-bar" class="stat-bar exp"></div>
+            <div class="currency-box">
+                <span id="gold-val">0</span>
+                <span id="silver-val">0</span>
+                <span id="copper-val">0</span>
+                <span id="diamonds-val">0</span>
             </div>
         </div>
 
-        <div class="game-viewport">
-            <div class="side-slots left">
-                <div class="slot" id="slot-head"></div>
-                <div class="slot" id="slot-weapon"></div>
-                <div class="slot" id="slot-chest"></div>
+        <div id="main-viewport" class="game-viewport">
+            <div id="location-title" class="location-name">Центральная Площадь</div>
+            
+            <div id="tab-location" class="tab-content active">
+                <div class="hero-render"></div>
             </div>
 
-            <div id="location-screen" class="screen active">
-                <div class="location-header">Центральная Площадь Векрона</div>
-            </div>
-
-            <div class="side-slots right">
-                <div class="slot" id="slot-legs"></div>
-                <div class="slot" id="slot-boots"></div>
-                <div class="slot" id="slot-ring"></div>
+            <div id="tab-inventory" class="tab-content">
+                <div class="inventory-grid" id="inventory-list">
+                    </div>
             </div>
         </div>
 
         <div class="bottom-nav">
-            <div class="nav-btn btn-bag" onclick="showTab('inventory')"></div>
-            <div class="nav-btn btn-loc" onclick="showTab('location')"></div>
-            <div class="nav-btn btn-map" onclick="showTab('map')"></div>
-            <div class="nav-btn btn-hunt" onclick="showTab('hunt')"></div>
+            <div class="nav-btn" onclick="showTab('inventory')" style="left: 10px;"></div>
+            <div class="nav-btn" onclick="showTab('location')" style="left: 60px;"></div>
+            <div class="nav-btn" onclick="showTab('map')" style="left: 110px;"></div>
+            <div class="nav-btn" onclick="showTab('hunt')" style="left: 160px;"></div>
         </div>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>
