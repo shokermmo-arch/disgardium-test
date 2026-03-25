@@ -10,7 +10,7 @@ body, html {
     position: relative; background-color: #1a1510;
 }
 
-/* HUD */
+/* ВЕРХНЯЯ ПАНЕЛЬ */
 .player-hud {
     width: 100%; height: 110px;
     background: url('img/gui/player_hud.png') no-repeat center;
@@ -33,7 +33,7 @@ body, html {
     font-size: 11px; display: flex; gap: 12px; font-weight: bold;
 }
 
-/* МИР */
+/* ЦЕНТРАЛЬНАЯ ЧАСТЬ */
 .game-viewport {
     flex: 1; position: relative;
     background: url('img/gui/city_bg.png') no-repeat center;
@@ -53,7 +53,7 @@ body, html {
     background-size: contain;
 }
 
-/* КНОПКИ */
+/* НИЖНЯЯ НАВИГАЦИЯ */
 .bottom-nav {
     width: 100%; height: 75px; flex-shrink: 0;
     background: url('img/gui/main_nav.png') no-repeat center;
@@ -62,5 +62,5 @@ body, html {
 
 .nav-btn {
     position: absolute; top: 10px; width: 50px; height: 50px;
-    cursor: pointer; /* Кнопки прозрачные, так как они уже нарисованы на фоне */
+    cursor: pointer;
 }
