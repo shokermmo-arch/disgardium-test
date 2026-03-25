@@ -1,57 +1,56 @@
-/* style.css */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body, html { height: 100%; background: #000; overflow: hidden; }
+body, html { 
+    height: 100%; 
+    background: #000; 
+    color: #fff; 
+    overflow: hidden; /* Убираем прокрутку всего экрана */
+}
 
 #game-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 500px; /* Ограничение под мобильный Telegram */
     height: 100vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    /* Если картинки нет, этот цвет покажет, что блок существует */
-    background-color: #1a1510; 
 }
 
-/* ВЕРХНЯЯ ПАНЕЛЬ */
+/* ВЕРХНЯЯ ПАНЕЛЬ: Фиксируем высоту под картинку */
 .player-hud {
     width: 100%;
-    height: 110px;
-    background-color: #00008B; /* ТЕМНО-СИНИЙ (Для теста) */
-    background-image: url('img/gui/player_hud.png');
-    background-size: 100% 100%;
-    border-bottom: 2px solid #ffd700;
+    height: 130px; 
+    background: url('img/gui/player_hud.png') no-repeat center top;
+    background-size: contain;
     position: relative;
+    flex-shrink: 0; /* Не дает панели сжиматься */
 }
 
-/* ЦЕНТРАЛЬНАЯ ЧАСТЬ */
+/* ЦЕНТРАЛЬНАЯ ЧАСТЬ: Город и герой */
 .game-viewport {
-    flex: 1;
-    background-color: #222; /* ТЕМНО-СЕРЫЙ (Для теста) */
-    background-image: url('img/gui/city_bg.png');
+    flex: 1; /* Занимает всё свободное место между верхом и низом */
+    background: url('img/gui/city_bg.png') no-repeat center;
     background-size: cover;
-    border: 3px solid red; /* КРАСНАЯ РАМКА - если её видишь, CSS работает! */
+    position: relative;
     display: flex;
     justify-content: center;
-    position: relative;
+    overflow: hidden;
 }
 
+/* Герой со слотами (увеличиваем масштаб) */
 .hero-character {
     position: absolute;
-    bottom: 5%;
-    width: 200px;
-    height: 300px;
-    background-image: url('img/pers/hero_m.png');
+    bottom: 0;
+    width: 90%;
+    height: 90%;
+    background: url('img/pers/hero_m.png') no-repeat center bottom;
     background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
-/* НИЖНЯЯ ПАНЕЛЬ */
+/* НИЖНЯЯ ПАНЕЛЬ: Навигация */
 .bottom-nav {
     width: 100%;
-    height: 75px;
-    background-color: #333;
-    background-image: url('img/gui/main_nav.png');
+    height: 80px;
+    background: url('img/gui/main_nav.png') no-repeat center bottom;
     background-size: contain;
+    flex-shrink: 0;
 }

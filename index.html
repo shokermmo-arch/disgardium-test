@@ -2,30 +2,35 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Disgardium RPG</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="game-container">
+        
         <div class="player-hud">
-            <div class="hud-stats-container">
-                <div class="bar-line exp"></div>
-                <div class="bar-line valour"></div>
-                <div class="bar-line hp"></div>
-                <div class="bar-line mp"></div>
-            </div>
             <div class="currency-display">
-                <span>962</span><span>99</span><span>96</span><span>458.25</span>
+                <span class="gold">962</span>
+                <span class="silver">99</span>
+                <span class="bronze">96</span>
+                <span class="diamonds">458.25</span>
             </div>
         </div>
 
         <div class="game-viewport">
             <div class="location-label">Центральная Площадь Векрона</div>
-            <div class="hero-character"></div>
+            
+            <div class="hero-character">
+                </div>
         </div>
 
-        <div class="bottom-nav"></div>
+        <div class="bottom-nav">
+            </div>
+
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
